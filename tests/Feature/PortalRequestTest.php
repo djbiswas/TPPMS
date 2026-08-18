@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Property;
 use App\Models\TenantRequest;
 use App\Models\User;
+use App\Support\Company;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Mail;
@@ -17,6 +18,8 @@ class PortalRequestTest extends TestCase
 
     private function property(): Property
     {
+        Company::forget();
+
         return Property::query()->create([
             'name' => '317 Freedom Park',
             'address_line' => '317 Freedom Park',
@@ -33,10 +36,46 @@ class PortalRequestTest extends TestCase
         ]);
     }
 
-    public function test_home_page_renders(): void
+    public function test_home_page_matches_branding(): void
     {
         $this->property();
-        $this->get('/')->assertOk();
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Welcome Home.')
+            ->assertSee('Tenant login')
+            ->assertSee('Sign in to my account')
+            ->assertSee('Activate my account')
+            ->assertSee('Your tenant portal includes')
+            ->assertSee('TENANT PORTAL')
+            ->assertSee('Angie Ojeda');
+    }
+
+    public function test_contact_page_matches_layout(): void
+    {
+        $this->property();
+        $this->get('/contact')
+            ->assertOk()
+            ->assertSee('Contact Us')
+            ->assertSee('Maintenance Request')
+            ->assertSee('Late Rent')
+            ->assertSee('@LLInternationalVentures')
+            ->assertSee('Submit request')
+            ->assertSee('Angie Ojeda');
+    }
+
+    public function test_tenant_dashboard_shows_demo_balance_and_history(): void
+    {
+        $property = $this->property();
+        $tenant = User::factory()->create(['property_id' => $property->id]);
+
+        $this->actingAs($tenant)
+            ->get(route('tenant.dashboard'))
+            ->assertOk()
+            ->assertSee('$2,375.00')
+            ->assertSee('Apr 1, 2025')
+            ->assertSee('Pay rent')
+            ->assertSee('How to Pay with Zelle')
+            ->assertSee('Pay Now with Chase');
     }
 
     public function test_guest_can_submit_contact_form(): void
@@ -45,7 +84,7 @@ class PortalRequestTest extends TestCase
         Storage::fake('local');
         $this->property();
 
-        $this->post('/contact', [
+        $response = $this->from('/contact')->post('/contact', [
             'type' => 'maintenance',
             'subject' => 'Leaky faucet',
             'body' => 'Kitchen sink is leaking.',
@@ -55,7 +94,10 @@ class PortalRequestTest extends TestCase
             'preferred_contact' => 'email',
             'priority' => 'high',
             'attachment' => UploadedFile::fake()->image('sink.jpg'),
-        ])->assertRedirect();
+        ]);
+
+        $response->assertRedirect();
+        $this->followRedirects($response)->assertSee('Thank you! Your request has been received');
 
         $this->assertDatabaseHas('tenant_requests', [
             'subject' => 'Leaky faucet',

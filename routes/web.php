@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Tenant\DashboardController as TenantDashboardController;
+use App\Http\Controllers\Tenant\HistoryController;
 use App\Http\Controllers\Tenant\PaymentController;
 use App\Http\Controllers\Tenant\RequestController as TenantRequestController;
 use Illuminate\Support\Facades\Route;
@@ -40,15 +41,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:tenant'])->prefix('tenant')->name('tenant.')->group(function () {
     Route::get('/', TenantDashboardController::class)->name('dashboard');
-    Route::get('/payments', PaymentController::class)->name('payments');
+    Route::get('/payments', \App\Http\Controllers\Tenant\PaymentController::class)->name('payments');
     Route::get('/documents', fn () => view('tenant.coming-soon', [
         'title' => 'Lease Documents',
         'copy' => 'Your lease and addenda will appear here once property management uploads them.',
     ]))->name('documents');
-    Route::get('/history', fn () => view('tenant.coming-soon', [
-        'title' => 'Payment History',
-        'copy' => 'Verified payments and downloadable receipts will be listed here.',
-    ]))->name('history');
+    Route::get('/history', HistoryController::class)->name('history');
     Route::get('/messages', fn () => view('tenant.coming-soon', [
         'title' => 'Messages',
         'copy' => 'Secure messages from property management will show here. For now, use Contact Us.',

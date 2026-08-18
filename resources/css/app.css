@@ -18,7 +18,7 @@
         @apply text-xs font-bold uppercase tracking-[0.16em] text-forest;
     }
     .nav-item {
-        @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition;
+        @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition;
     }
     .nav-item-active {
         @apply bg-gold text-forest;
@@ -28,5 +28,8 @@
     }
     .status-pill {
         @apply inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide;
+    }
+    .form-control {
+        @apply mt-1 w-full rounded-lg border-gray-300 text-sm focus:border-gold focus:ring-gold;
     }
 }

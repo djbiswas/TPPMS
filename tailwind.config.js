@@ -14,15 +14,16 @@ export default {
         extend: {
             colors: {
                 forest: {
-                    DEFAULT: '#0e2a22',
-                    dark: '#08211b',
-                    light: '#16382f',
+                    DEFAULT: '#0A2621',
+                    dark: '#071c18',
+                    light: '#12352e',
                 },
                 gold: {
-                    DEFAULT: '#c09665',
-                    dark: '#a67b4a',
+                    DEFAULT: '#C29C6D',
+                    dark: '#a67d4e',
                 },
-                cream: '#f4efe6',
+                cream: '#F5F1E8',
+                canvas: '#F9F9F7',
                 zelle: '#6d1ed4',
             },
             fontFamily: {

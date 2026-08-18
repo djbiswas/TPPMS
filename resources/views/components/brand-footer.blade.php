@@ -1,12 +1,12 @@
 <footer class="bg-forest text-white">
     <div class="grid gap-6 px-6 py-8 md:grid-cols-2 md:items-center">
         <div class="flex items-center gap-3">
-            <span class="flex h-10 w-10 items-center justify-center rounded-full border border-gold/70 text-gold">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold text-gold">
                 <x-icon name="home" class="h-5 w-5" />
             </span>
             <div>
                 <p class="text-sm font-semibold tracking-wide">L&amp;L INTERNATIONAL VENTURES LLC</p>
-                <p class="font-serif italic text-gold">Professional management. Simple living.</p>
+                <p class="text-sm text-white/90">Professional management. <span class="font-serif italic text-gold">Simple living.</span></p>
             </div>
         </div>
         <p class="flex items-center gap-2 text-sm text-white/80 md:justify-end md:border-l md:border-white/20 md:pl-8">

@@ -13,10 +13,10 @@
     <header class="border-b border-cream bg-white">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <x-application-logo class="h-12 w-12" />
+                <x-application-logo class="h-11 w-[4.6rem]" />
                 <div>
-                    <p class="text-xs font-semibold tracking-[0.18em] text-forest">L&L INTERNATIONAL</p>
-                    <p class="text-[11px] tracking-[0.22em] text-gold">VENTURES LLC</p>
+                    <p class="font-serif text-sm tracking-[0.12em] text-forest">L&amp;L INTERNATIONAL</p>
+                    <p class="text-[10px] font-semibold tracking-[0.28em] text-gold">VENTURES LLC</p>
                 </div>
             </a>
             <a href="{{ route('login') }}" class="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-forest">

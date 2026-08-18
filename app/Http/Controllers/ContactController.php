@@ -19,7 +19,12 @@ class ContactController extends Controller
     {
         return view('public.contact', [
             'property' => Company::property(),
-            'types' => TenantRequest::TYPES,
+            'types' => [
+                'maintenance' => 'Maintenance Request',
+                'late_rent' => 'Late Rent',
+                'urgent' => 'Urgent Request',
+                'other' => 'Other',
+            ],
             'user' => $request->user(),
         ]);
     }

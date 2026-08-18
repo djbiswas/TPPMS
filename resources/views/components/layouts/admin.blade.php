@@ -14,8 +14,8 @@
 <div class="flex min-h-screen">
     <aside class="hidden w-64 flex-col bg-forest-dark text-white md:flex">
         <div class="flex items-center gap-3 px-5 py-6">
-            <x-application-logo class="h-10 w-10" />
-            <span class="text-sm font-semibold">L&amp;L Admin</span>
+            <x-application-logo variant="mark-light" class="h-11 w-[4.6rem]" />
+            <span class="text-sm font-semibold tracking-wide">L&amp;L Admin</span>
         </div>
         <nav class="flex-1 space-y-1 px-3 text-sm">
             <a class="nav-item {{ request()->routeIs('admin.dashboard') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('admin.dashboard') }}"><x-icon name="dashboard" class="h-5 w-5" /> Dashboard</a>

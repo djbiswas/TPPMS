@@ -10,18 +10,16 @@
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|playfair-display:600,700" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-[#f3f0ea] font-sans text-forest" x-data="{ open: false }">
+<body class="min-h-screen bg-canvas font-sans text-forest" x-data="{ open: false }">
     <header class="sticky top-0 z-30 flex items-center justify-between border-b border-cream bg-white px-4 py-3 md:px-6">
         <div class="flex items-center gap-3">
             <button class="rounded-lg p-2 md:hidden" type="button" @click="open = true" aria-label="Open menu">
                 <x-icon name="menu" class="h-6 w-6" />
             </button>
-            <a href="{{ route('tenant.dashboard') }}" class="flex items-center gap-3">
-                <x-application-logo class="h-10 w-10" />
-                <div class="hidden sm:block">
-                    <p class="text-[11px] font-semibold tracking-[0.18em]">L&amp;L INTERNATIONAL</p>
-                    <p class="text-[10px] tracking-[0.22em] text-gold">VENTURES LLC</p>
-                </div>
+            <a href="{{ route('tenant.dashboard') }}" class="flex items-center gap-4">
+                <x-application-logo class="h-11 w-[4.6rem] shrink-0" />
+                <span class="hidden h-8 w-px bg-gold sm:block"></span>
+                <p class="hidden font-serif text-xs tracking-[0.14em] sm:block md:text-sm">L&amp;L INTERNATIONAL VENTURES LLC</p>
             </a>
         </div>
         <div class="flex items-center gap-4">
@@ -44,7 +42,7 @@
                 <div class="mt-4 rounded-xl border border-white/15 p-4 text-sm">
                     <p class="flex items-center gap-2 font-semibold"><x-icon name="headset" class="h-5 w-5 text-gold" /> Need Help?</p>
                     <p class="mt-1 text-white/70">We're here for you.</p>
-                    <a href="{{ route('contact') }}" class="mt-3 inline-flex w-full items-center justify-center rounded-lg border border-gold px-3 py-2 text-xs font-semibold text-gold">Contact Angie Ojeda</a>
+                    <a href="{{ route('contact') }}" class="mt-3 inline-flex w-full items-center justify-center rounded-lg border border-white px-3 py-2 text-xs font-semibold text-white">Contact Angie Ojeda</a>
                 </div>
             </div>
         </aside>
