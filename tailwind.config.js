@@ -14,13 +14,13 @@ export default {
         extend: {
             colors: {
                 forest: {
-                    DEFAULT: '#16382f',
-                    dark: '#0f241e',
-                    light: '#1f4a3d',
+                    DEFAULT: '#0e2a22',
+                    dark: '#08211b',
+                    light: '#16382f',
                 },
                 gold: {
-                    DEFAULT: '#c4a36a',
-                    dark: '#a8884e',
+                    DEFAULT: '#c09665',
+                    dark: '#a67b4a',
                 },
                 cream: '#f4efe6',
                 zelle: '#6d1ed4',

@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] { display: none !important; }
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg bg-forest px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-forest-light;
+    }
+    .btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg border border-forest bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide text-forest transition hover:bg-cream;
+    }
+    .card {
+        @apply rounded-2xl bg-white shadow-[0_8px_30px_rgba(15,36,30,0.06)] ring-1 ring-black/5;
+    }
+    .label-caps {
+        @apply text-xs font-bold uppercase tracking-[0.16em] text-forest;
+    }
+    .nav-item {
+        @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition;
+    }
+    .nav-item-active {
+        @apply bg-gold text-forest;
+    }
+    .nav-item-idle {
+        @apply text-white/90 hover:bg-white/10;
+    }
+    .status-pill {
+        @apply inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide;
+    }
+}

@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             ['key' => 'zelle_handle', 'value' => '@LLInternationalVentures', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'wire_instructions', 'value' => 'Wire details are provided after you sign in, or by email from property management.', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'office_hours', 'value' => 'Mon - Fri | 9:00 AM - 5:00 PM', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'rent_amount', 'value' => '2375.00', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'next_due_date', 'value' => 'May 1, 2025', 'created_at' => now(), 'updated_at' => now()],
         ]);
 
         User::factory()->admin()->create([
@@ -37,6 +39,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'manager@llinternationalventures.com',
             'phone' => '(512) 806-3630',
             'property_id' => $property->id,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Tenant',
+            'email' => 'tenant@example.com',
+            'phone' => '(512) 555-0100',
+            'property_id' => $property->id,
+            'role' => User::ROLE_TENANT,
+            'status' => User::STATUS_ACTIVE,
         ]);
     }
 }

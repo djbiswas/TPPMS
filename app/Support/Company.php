@@ -12,13 +12,17 @@ class Company
     {
         try {
             $settings = Cache::remember('app_settings', 60, function () {
-                return Setting::query()->pluck('value', 'key');
+                return Setting::query()->pluck('value', 'key')->all();
             });
+
+            if (! is_array($settings)) {
+                $settings = collect($settings)->all();
+            }
+
+            return $settings[$key] ?? $default;
         } catch (\Throwable) {
             return $default;
         }
-
-        return $settings[$key] ?? $default;
     }
 
     public static function put(string $key, ?string $value): void

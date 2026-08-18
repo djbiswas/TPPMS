@@ -1,4 +1,4 @@
 <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
-    <rect width="64" height="64" rx="12" fill="#16382f"/>
-    <text x="32" y="40" text-anchor="middle" fill="#c4a36a" font-size="18" font-family="Georgia, serif" font-weight="700">L&amp;L</text>
+    <rect width="64" height="64" rx="14" fill="#0e2a22"/>
+    <path d="M14 42V22h8.2c4.6 0 7.4 2.4 7.4 6.4 0 4.1-2.9 6.6-7.5 6.6H20.6V42H14zm6.6-11.2h1.4c2 0 3.2-1 3.2-2.5s-1.1-2.4-3.1-2.4h-1.5v4.9zM32.2 42V22h10.2c5.4 0 8.8 3.4 8.8 8.2v3.6c0 4.8-3.4 8.2-8.8 8.2H32.2zm6.6-5.4h3.4c2.3 0 3.6-1.5 3.6-3.8v-2.4c0-2.3-1.3-3.8-3.6-3.8h-3.4V36.6z" fill="#c09665"/>
 </svg>

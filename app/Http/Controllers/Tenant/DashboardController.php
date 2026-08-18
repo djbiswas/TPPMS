@@ -16,6 +16,9 @@ class DashboardController extends Controller
         return view('tenant.dashboard', [
             'property' => $user->property ?: Company::property(),
             'requests' => $user->tenantRequests()->latest()->limit(8)->get(),
+            'rentAmount' => Company::get('rent_amount', '2375.00'),
+            'dueDate' => Company::get('next_due_date', 'May 1, 2025'),
+            'history' => [],
         ]);
     }
 }
