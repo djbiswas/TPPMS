@@ -16,6 +16,10 @@ Full step-by-step plan: [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md)
 
 `WEBFIX_LICENSE_BYPASS=true` is for local only.
 
+## Bluehost
+
+Step-by-step cPanel deploy (PHP 8.3, document root, MySQL, `.env`): [docs/BLUEHOST.md](docs/BLUEHOST.md)
+
 ## Production license
 
 Do **not** edit `d:\laragonv2\www\webfixteam`. In webfixteam admin:

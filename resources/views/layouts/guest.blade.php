@@ -11,7 +11,7 @@
     </head>
     <body class="font-sans text-forest antialiased">
         <div class="relative flex min-h-screen flex-col items-center justify-center bg-cream px-4 py-10">
-            <img src="{{ asset('images/property-hero.jpg') }}" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20">
+            <img src="{{ $siteHero ?? asset('images/property-hero.jpg') }}" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20">
             <div class="relative w-full max-w-md">
                 <a href="{{ route('home') }}" class="mb-6 flex items-center justify-center">
                     <x-application-logo variant="full" class="h-44 w-auto max-w-[16rem]" />

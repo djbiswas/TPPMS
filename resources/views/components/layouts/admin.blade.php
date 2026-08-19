@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|playfair-display:600,700" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
 </head>
 <body class="min-h-screen bg-[#f4f1ea] font-sans text-forest" x-data="{ open: false }">
 <div class="flex min-h-screen">
@@ -22,6 +23,7 @@
             <a class="nav-item {{ request()->routeIs('admin.requests.*') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('admin.requests.index') }}"><x-icon name="wrench" class="h-5 w-5" /> Requests</a>
             <a class="nav-item {{ request()->routeIs('admin.tenants.*') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('admin.tenants.index') }}"><x-icon name="user" class="h-5 w-5" /> Tenants</a>
             <a class="nav-item {{ request()->routeIs('admin.settings.*') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('admin.settings.edit') }}"><x-icon name="document" class="h-5 w-5" /> Settings</a>
+            <a class="nav-item {{ request()->routeIs('admin.pages.*') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('admin.pages.index') }}"><x-icon name="document" class="h-5 w-5" /> Pages</a>
             <a class="nav-item {{ request()->routeIs('license.*') ? 'nav-item-active' : 'nav-item-idle' }}" href="{{ route('license.edit') }}"><x-icon name="lock" class="h-5 w-5" /> License</a>
         </nav>
         <form method="POST" action="{{ route('logout') }}" class="px-5 py-6">@csrf<button class="nav-item nav-item-idle w-full"><x-icon name="logout" class="h-5 w-5" /> Log out</button></form>
@@ -41,6 +43,7 @@
     <a class="block py-2" href="{{ route('admin.requests.index') }}">Requests</a>
     <a class="block py-2" href="{{ route('admin.tenants.index') }}">Tenants</a>
     <a class="block py-2" href="{{ route('admin.settings.edit') }}">Settings</a>
+    <a class="block py-2" href="{{ route('admin.pages.index') }}">Pages</a>
     <a class="block py-2" href="{{ route('license.edit') }}">License</a>
 </aside>
 </body>

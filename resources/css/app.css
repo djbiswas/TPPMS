@@ -32,4 +32,6 @@
     .form-control {
         @apply mt-1 w-full rounded-lg border-gray-300 text-sm focus:border-gold focus:ring-gold;
     }
+    .prose-portal p { margin-bottom: 0.75rem; }
+    .prose-portal a { text-decoration: underline; }
 }

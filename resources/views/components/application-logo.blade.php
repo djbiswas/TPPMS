@@ -1,9 +1,12 @@
 @props(['variant' => 'mark'])
 @php
+    $uploaded = $siteLogo ?? null;
     $ink = $variant === 'mark-light' ? '#F5F1E8' : '#2B2B2B';
     $gold = '#B89356';
 @endphp
-@if ($variant === 'full')
+@if ($uploaded)
+    <img src="{{ $uploaded }}" alt="{{ $siteName ?? 'Logo' }}" {{ $attributes->merge(['class' => 'object-contain']) }}>
+@elseif ($variant === 'full')
     <img src="{{ asset('images/branding/ll-logo-official.png') }}" alt="L&amp;L International Ventures LLC" {{ $attributes->merge(['class' => 'object-contain']) }}>
 @else
 <svg viewBox="0 0 200 118" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {{ $attributes }}>

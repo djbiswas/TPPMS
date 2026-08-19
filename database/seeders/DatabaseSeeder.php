@@ -49,5 +49,7 @@ class DatabaseSeeder extends Seeder
             'role' => User::ROLE_TENANT,
             'status' => User::STATUS_ACTIVE,
         ]);
+
+        $this->call(PageSeeder::class);
     }
 }

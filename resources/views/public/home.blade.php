@@ -1,7 +1,7 @@
 <x-layouts.public title="Welcome Home — L&L Tenant Portal">
     <section class="relative">
         <div class="relative min-h-[560px] sm:min-h-[640px]">
-            <img src="{{ asset('images/property-hero.jpg') }}" alt="317 Freedom Park, Liberty Hill" class="absolute inset-0 h-full w-full object-cover object-center">
+            <img src="{{ $siteHero ?? asset('images/property-hero.jpg') }}" alt="317 Freedom Park, Liberty Hill" class="absolute inset-0 h-full w-full object-cover object-center">
             <div class="absolute inset-0 bg-gradient-to-b from-cream via-cream/40 to-transparent"></div>
             <div class="relative z-10 mx-auto max-w-3xl px-4 pb-40 pt-28 text-center sm:pt-32">
                 <h1 class="font-serif text-5xl text-forest sm:text-6xl md:text-7xl">Welcome Home.</h1>

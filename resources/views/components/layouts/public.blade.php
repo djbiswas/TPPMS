@@ -1,10 +1,33 @@
+@props(['title' => null, 'metaDescription' => null, 'ogImage' => null])
+@php
+    $pageTitle = $title ?? ($siteMetaTitle ?? 'L&L International Ventures LLC');
+    $desc = $metaDescription ?? ($siteMetaDescription ?? '');
+    $og = $ogImage ?? ($siteOgImage ?? null);
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'L&L International Ventures LLC' }}</title>
+    <title>{{ $pageTitle }}</title>
+    @if ($desc)
+        <meta name="description" content="{{ $desc }}">
+    @endif
+    @if (!empty($siteMetaKeywords))
+        <meta name="keywords" content="{{ $siteMetaKeywords }}">
+    @endif
+    @if (!empty($siteFavicon))
+        <link rel="icon" href="{{ $siteFavicon }}">
+        <link rel="apple-touch-icon" href="{{ $siteFavicon }}">
+    @endif
+    <meta property="og:title" content="{{ $pageTitle }}">
+    @if ($desc)
+        <meta property="og:description" content="{{ $desc }}">
+    @endif
+    @if ($og)
+        <meta property="og:image" content="{{ $og }}">
+    @endif
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|playfair-display:600,700" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -15,7 +38,7 @@
             <a href="{{ route('home') }}" class="flex items-center gap-4">
                 <x-application-logo class="h-11 w-[4.6rem] shrink-0" />
                 <span class="hidden h-8 w-px bg-gold sm:block"></span>
-                <p class="hidden font-serif text-xs tracking-[0.14em] text-forest sm:block md:text-sm">L&amp;L INTERNATIONAL VENTURES LLC</p>
+                <p class="hidden font-serif text-xs tracking-[0.14em] text-forest sm:block md:text-sm">{{ strtoupper($siteName ?? 'L&L INTERNATIONAL VENTURES LLC') }}</p>
             </a>
             <a href="{{ route('login') }}" class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-forest">
                 <span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold">
@@ -33,8 +56,8 @@
                     <x-icon name="home" class="h-5 w-5" />
                 </span>
                 <div>
-                    <p class="text-sm font-semibold tracking-[0.12em]">L&amp;L INTERNATIONAL VENTURES LLC</p>
-                    <p class="text-sm text-white/90">Professional management. <span class="font-serif italic text-gold">Simple living.</span></p>
+                    <p class="text-sm font-semibold tracking-[0.12em]">{{ strtoupper($siteName ?? 'L&L INTERNATIONAL VENTURES LLC') }}</p>
+                    <p class="font-serif italic text-gold">{{ $siteTagline ?? 'Professional management. Simple living.' }}</p>
                 </div>
             </div>
             <p class="flex items-center gap-2 text-sm text-white/85 md:border-l md:border-white/25 md:pl-8">
@@ -45,7 +68,13 @@
         <div class="border-t border-white/15 px-4 py-3 text-xs text-white/70">
             <div class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:justify-between">
                 <p class="flex items-center gap-2"><x-icon name="lock" class="h-3.5 w-3.5" /> Your information is secure and encrypted.</p>
-                <p>&copy; {{ date('Y') }} L&amp;L International Ventures LLC. All rights reserved.</p>
+                <p>
+                    <a class="underline" href="{{ route('privacy') }}">Privacy</a>
+                    ·
+                    <a class="underline" href="{{ route('terms') }}">Terms</a>
+                    ·
+                    &copy; {{ date('Y') }} {{ $siteName ?? 'L&L International Ventures LLC' }}. All rights reserved.
+                </p>
             </div>
         </div>
     </footer>

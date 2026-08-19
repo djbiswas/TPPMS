@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Models\Property;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class Company
 {
@@ -44,5 +45,21 @@ class Company
     {
         Cache::forget('app_settings');
         Cache::forget('primary_property');
+    }
+
+    public static function mediaUrl(?string $path, ?string $fallback = null): ?string
+    {
+        $path = $path ?: $fallback;
+        if (! $path) {
+            return null;
+        }
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
+            return $path;
+        }
+        if (str_starts_with($path, 'images/') || str_starts_with($path, 'build/')) {
+            return asset($path);
+        }
+
+        return Storage::disk('public')->url($path);
     }
 }
