@@ -17,7 +17,7 @@ use App\Http\Controllers\Tenant\PaymentController;
 use App\Http\Controllers\Tenant\RequestController as TenantRequestController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+Route::match(['GET', 'HEAD', 'POST'], '/', HomeController::class)->name('home');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/privacy', fn () => app(PageController::class)->show('privacy'))->name('privacy');
