@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Page;
 use App\Support\Company;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('siteFavicon', Company::mediaUrl(Company::get('favicon')));
                 $view->with('siteOgImage', Company::mediaUrl(Company::get('og_image')));
                 $view->with('siteHero', Company::mediaUrl(Company::get('property_hero'), 'images/property-hero.jpg'));
+                $view->with('publishedPages', Page::query()->where('is_published', true)->orderBy('title')->get());
             } catch (\Throwable) {
                 $view->with('companyProperty', null);
                 $view->with('zelleHandle', '@LLInternationalVentures');
@@ -45,6 +47,14 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('siteFavicon', null);
                 $view->with('siteOgImage', null);
                 $view->with('siteHero', asset('images/property-hero.jpg'));
+                $view->with('publishedPages', collect());
+            }
+        });
+        View::composer('components.admin-nav', function ($view) {
+            try {
+                $view->with('navPages', Page::query()->orderBy('title')->get());
+            } catch (\Throwable) {
+                $view->with('navPages', collect());
             }
         });
     }

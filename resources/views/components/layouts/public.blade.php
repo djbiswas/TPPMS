@@ -35,17 +35,35 @@
 <body class="min-h-screen bg-canvas font-sans text-forest antialiased">
     <header class="{{ request()->routeIs('home') ? 'absolute inset-x-0 top-0 z-20 bg-gradient-to-b from-cream via-cream/90 to-transparent' : 'relative border-b border-cream bg-white' }}">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <a href="{{ route('home') }}" class="flex items-center gap-4">
-                <x-application-logo class="h-11 w-[4.6rem] shrink-0" />
-                <span class="hidden h-8 w-px bg-gold sm:block"></span>
-                <p class="hidden font-serif text-xs tracking-[0.14em] text-forest sm:block md:text-sm">{{ strtoupper($siteName ?? 'L&L INTERNATIONAL VENTURES LLC') }}</p>
+            <a href="{{ route('home') }}" class="flex items-center">
+                <x-application-logo class="h-16 w-auto max-w-[11rem] shrink-0 sm:h-[4.75rem] sm:max-w-[13rem]" />
             </a>
-            <a href="{{ route('login') }}" class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-forest">
-                <span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold">
-                    <x-icon name="lock" class="h-4 w-4" />
-                </span>
-                TENANT PORTAL
-            </a>
+            <div class="flex items-center gap-4 sm:gap-6">
+                @if (($publishedPages ?? collect())->isNotEmpty())
+                    <div class="relative hidden sm:block" x-data="{ open: false }" @click.outside="open = false">
+                        <button type="button" class="flex items-center gap-1 text-[11px] font-semibold tracking-[0.16em] text-forest" @click="open = !open">
+                            PAGES
+                            <x-icon name="chevron" class="h-3.5 w-3.5" />
+                        </button>
+                        <div x-cloak x-show="open" class="absolute right-0 z-30 mt-2 min-w-[12rem] rounded-xl bg-white py-2 shadow-lg ring-1 ring-black/5">
+                            @foreach ($publishedPages as $pubPage)
+                                @php
+                                    $href = in_array($pubPage->slug, ['privacy', 'terms'], true)
+                                        ? route($pubPage->slug)
+                                        : route('pages.show', $pubPage->slug);
+                                @endphp
+                                <a href="{{ $href }}" class="block px-4 py-2 text-sm text-forest hover:bg-cream">{{ $pubPage->title }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                <a href="{{ route('login') }}" class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-forest">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold">
+                        <x-icon name="lock" class="h-4 w-4" />
+                    </span>
+                    TENANT PORTAL
+                </a>
+            </div>
         </div>
     </header>
     <main>{{ $slot }}</main>
@@ -72,6 +90,10 @@
                     <a class="underline" href="{{ route('privacy') }}">Privacy</a>
                     ·
                     <a class="underline" href="{{ route('terms') }}">Terms</a>
+                    @foreach (($publishedPages ?? collect())->whereNotIn('slug', ['privacy', 'terms']) as $pubPage)
+                        ·
+                        <a class="underline" href="{{ route('pages.show', $pubPage->slug) }}">{{ $pubPage->title }}</a>
+                    @endforeach
                     ·
                     &copy; {{ date('Y') }} {{ $siteName ?? 'L&L International Ventures LLC' }}. All rights reserved.
                 </p>

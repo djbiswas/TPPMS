@@ -86,7 +86,9 @@ class SettingsController extends Controller
 
         Company::forget();
 
-        return back()->with('status', 'Settings saved.');
+        $tab = $request->input('tab', 'branding');
+
+        return redirect()->route('admin.settings.edit', ['tab' => $tab])->with('status', 'Settings saved.');
     }
 
     private function saveImage(ImageProcessor $images, Request $request, string $field, string $dir, int $w, int $h, bool $cover, string $format): ?string

@@ -16,10 +16,8 @@
             <button class="rounded-lg p-2 md:hidden" type="button" @click="open = true" aria-label="Open menu">
                 <x-icon name="menu" class="h-6 w-6" />
             </button>
-            <a href="{{ route('tenant.dashboard') }}" class="flex items-center gap-4">
-                <x-application-logo class="h-11 w-[4.6rem] shrink-0" />
-                <span class="hidden h-8 w-px bg-gold sm:block"></span>
-                <p class="hidden font-serif text-xs tracking-[0.14em] sm:block md:text-sm">L&amp;L INTERNATIONAL VENTURES LLC</p>
+            <a href="{{ route('tenant.dashboard') }}" class="flex items-center">
+                <x-application-logo class="h-14 w-auto max-w-[11rem] shrink-0 sm:h-16 sm:max-w-[13rem]" />
             </a>
         </div>
         <div class="flex items-center gap-4">

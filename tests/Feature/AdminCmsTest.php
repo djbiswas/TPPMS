@@ -105,6 +105,19 @@ class AdminCmsTest extends TestCase
         $this->get(route('pages.show', 'faq'))->assertSee('Updated answer');
     }
 
+    public function test_admin_settings_submenu_lists_pages(): void
+    {
+        $this->seed(\Database\Seeders\PageSeeder::class);
+        $this->actingAs($this->admin())
+            ->get(route('admin.settings.edit'))
+            ->assertOk()
+            ->assertSee('Settings')
+            ->assertSee('Branding')
+            ->assertSee('All pages')
+            ->assertSee('Privacy Policy')
+            ->assertSee('+ Add page');
+    }
+
     public function test_privacy_route_uses_page_content(): void
     {
         $this->seed(\Database\Seeders\PageSeeder::class);

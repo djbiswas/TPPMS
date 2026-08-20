@@ -14,7 +14,7 @@
             <img src="{{ $siteHero ?? asset('images/property-hero.jpg') }}" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20">
             <div class="relative w-full max-w-md">
                 <a href="{{ route('home') }}" class="mb-6 flex items-center justify-center">
-                    <x-application-logo variant="full" class="h-44 w-auto max-w-[16rem]" />
+                    <x-application-logo variant="full" class="h-52 w-auto max-w-[18rem]" />
                 </a>
                 <div class="card overflow-hidden px-6 py-8">
                     {{ $slot }}
